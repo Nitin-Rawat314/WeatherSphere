@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <h1>Dynamic Weather Dashboard</h1>
+        <p class="tagline">Real-time weather data &amp; 5-day forecast</p>
+      </div>
+
+      <div class="controls">
+        <form id="searchForm" class="search">
+          <input id="searchInput" placeholder="Search city (e.g. London)" required />
+          <button id="searchBtn" aria-label="Search">Search</button>
+        </form>
+
+        <div class="actions">
+          <button id="locBtn" title="Use my current location">My Location</button>
+          <div class="units">
+            <button id="cBtn" class="unit current">°C</button>
+            <button id="fBtn" class="unit">°F</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="status" class="status" aria-live="polite"></section>
+
+      <section id="currentCard" class="card current-card hidden" aria-label="Current Weather Details">
+        <div class="left">
+          <div class="meta">
+            <h2 id="city">--</h2>
+            <img id="flag" alt="country flag" class="flag-icon" />
+          </div>
+          <p id="desc" class="description">--</p>
+
+          <div class="temp-group">
+            <strong id="temp">--</strong>
+            <img id="icon" class="icon" alt="weather icon" />
+          </div>
+
+          <div class="core-stats">
+            <div><small>Feels Like</small><strong id="feels">--</strong><span class="unit-text">°C</span></div>
+            <div><small>Humidity</small><strong id="humidity">--</strong><span>%</span></div>
+            <div><small>Wind</small><strong id="wind">--</strong><span>m/s</span></div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="extra">
+            <div><small>Pressure</small><strong id="pressure">--</strong><span>hPa</span></div>
+            <div><small>Clouds</small><strong id="clouds">--</strong><span>%</span></div>
+            <div><small>Sunrise</small><strong id="sunrise">--</strong></div>
+            <div><small>Sunset</small><strong id="sunset">--</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="forecastCard" class="card forecast-card hidden" aria-label="5 day forecast">
+        <h3>5-Day Forecast</h3>
+        <div id="forecast" class="forecast-grid">
+          </div>
+      </section>
+
+      <section id="loader" class="overlay hidden" aria-busy="true">
+        <div class="spinner" aria-hidden="true"></div>
+        <div>Fetching data...</div>
+      </section>
+
+      <section id="error" class="overlay error hidden" role="alert">
+        <div>⚠️ <span id="errorMsg">Something went wrong</span></div>
+        <button id="errorClose">OK</button>
+      </section>
+
+      <footer class="footer">
+        <small>Weather data provided by OpenWeatherMap.</small>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
